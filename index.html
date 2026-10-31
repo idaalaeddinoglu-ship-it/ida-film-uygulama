@@ -1,18 +1,499 @@
 <!doctype html>
 <html lang="tr">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f4f0">
-<title>İcibici · Türk Filmleri</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap');
-:root{font-family:'DM Sans',sans-serif;color:#292a27;background:#f5f4f0;--muted:#85857e;--line:#e3e1da;--accent:#b95038}*{box-sizing:border-box}body{margin:0}.top{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 max(7vw,22px);border-bottom:1px solid var(--line)}.brand{font-weight:700;font-size:14px;letter-spacing:-.04em}.brand i{font-style:normal;color:var(--muted);font-weight:400}.mark{display:inline-grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#292a27;color:#f5f4f0;font-size:9px;margin-right:9px}.yt{font-size:10px;color:var(--muted);text-decoration:none}.yt b{color:var(--accent)}main{width:min(1060px,86vw);margin:auto}.intro{padding:65px 0 50px;position:relative}.eyebrow{font:500 9px 'DM Mono',monospace;letter-spacing:.14em;color:var(--muted);margin:0 0 13px}.intro h1{font-size:clamp(42px,6vw,65px);line-height:.99;letter-spacing:-.065em;font-weight:500;margin:0}.intro h1 em{font-family:'Playfair Display',serif;color:var(--accent)}.copy{font-size:12px;color:var(--muted);margin:18px 0 0}.search{position:absolute;right:0;bottom:53px;width:240px;border:0;border-bottom:1px solid #c9c6bd;background:transparent;padding:10px 2px;font:11px 'DM Sans',sans-serif;outline:none}.heading{display:flex;align-items:end;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:19px}.heading .eyebrow{margin:0 0 6px}.heading h2{font-size:18px;letter-spacing:-.04em;font-weight:500;margin:0}.count{font:9px 'DM Mono',monospace;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 20px}.card{min-width:0}.poster{aspect-ratio:1.42;display:block;position:relative;overflow:hidden;text-decoration:none;color:#fff;padding:13px;isolation:isolate;transition:transform .18s}.poster:hover{transform:translateY(-3px)}.poster:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 72% 32%,rgba(255,223,170,.35),transparent 40%),linear-gradient(145deg,transparent 42%,rgba(10,13,15,.4))}.poster:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.08),transparent 38%,rgba(0,0,0,.52))}.p0{background:linear-gradient(135deg,#bd7a4c,#5a433d)}.p1{background:linear-gradient(145deg,#d29a61,#5e3835)}.p2{background:linear-gradient(135deg,#536e62,#263d3c)}.p3{background:linear-gradient(135deg,#ad8056,#51443a)}.p4{background:linear-gradient(135deg,#a46a4e,#353d3c)}.p5{background:linear-gradient(135deg,#809369,#424b43)}.p6{background:linear-gradient(135deg,#98725b,#3e4941)}.p7{background:linear-gradient(135deg,#566779,#292d3d)}.label{font:8px 'DM Mono',monospace;letter-spacing:.08em;opacity:.88}.art{position:absolute;right:15%;top:17%;font-size:82px;color:rgba(245,223,181,.7);text-shadow:0 3px 25px #342a24}.title{position:absolute;left:14px;bottom:14px;font-size:22px;line-height:.95;letter-spacing:-.04em;white-space:pre-line}.play{position:absolute;right:13px;bottom:14px;border:1px solid #ffffff99;border-radius:50%;width:27px;height:27px;display:grid;place-items:center;font-size:9px;opacity:0}.poster:hover .play{opacity:1}.info{display:flex;justify-content:space-between;padding:10px 1px}.info h3{font-size:12px;margin:0 0 5px;font-weight:600}.info p{font-size:9px;color:var(--muted);margin:0}.num{font:9px 'DM Mono',monospace;color:#aaa89f}.empty{padding:36px 0;color:var(--muted);font-size:12px}footer{border-top:1px solid var(--line);margin-top:50px;padding:16px 0 22px;display:flex;justify-content:space-between;color:var(--muted);font-size:9px}.hide{display:none}@media(max-width:700px){main{width:88vw}.intro{padding:48px 0 25px}.search{position:static;display:block;width:min(100%,350px);margin-top:24px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:23px 13px}.title{font-size:19px}}@media(max-width:430px){.grid{grid-template-columns:1fr}.poster{aspect-ratio:1.6}.title{font-size:23px}}
-</style></head>
-<body><header class="top"><div class="brand"><span class="mark">▶</span>icibici <i>/ film seçkisi</i></div><a class="yt" href="https://youtube.com" target="_blank" rel="noreferrer">YouTube <b>↗</b></a></header>
-<main><section class="intro"><p class="eyebrow">TÜRK SİNEMASINDAN SEÇKİ</p><h1>Bu akşam ne<br><em>izlesek?</em></h1><p class="copy">Bir film seç, YouTube’da arayıp izlemeye başla.</p><input id="search" class="search" type="search" placeholder="Film ara…" aria-label="Film ara"></section>
-<section><div class="heading"><div><p class="eyebrow">İZLEME LİSTESİ</p><h2>Türk filmleri</h2></div><span class="count" id="count"></span></div><div class="grid" id="grid"></div><p class="empty hide" id="empty">Bu isimde film bulunamadı.</p></section><footer><span>Bir karta tıklayınca YouTube araması açılır.</span><span>İCİBİCİ · 01</span></footer></main>
-<script>
-const films=[['Hababam Sınıfı',1975,'Komedi','HABABAM','✳'],['Tosun Paşa',1976,'Komedi','TOSUN\nPAŞA','♜'],['Süt Kardeşler',1976,'Komedi','SÜT\nKARDEŞLER','☾'],['Neşeli Günler',1978,'Aile · Komedi','NEŞELİ\nGÜNLER','☼'],['Çöpçüler Kralı',1977,'Komedi','ÇÖPÇÜLER\nKRALI','✦'],['Gülen Gözler',1977,'Aile · Komedi','GÜLEN\nGÖZLER','☺'],['Bizim Aile',1975,'Aile · Dram','BİZİM\nAİLE','⌂'],['Canım Kardeşim',1973,'Dram','CANIM\nKARDEŞİM','♡'],['Selvi Boylum Al Yazmalım',1977,'Dram · Romantik','AL\nYAZMALIM','❋'],['Eşkıya',1996,'Dram · Suç','EŞKIYA','◈'],['Vizontele',2001,'Komedi · Dram','VİZONTELE','▣'],['G.O.R.A.',2004,'Bilim kurgu · Komedi','G.O.R.A.','✧'],['Babam ve Oğlum',2005,'Dram','BABAM VE\nOĞLUM','☁'],['Organize İşler',2005,'Komedi · Suç','ORGANİZE\nİŞLER','♠'],['A.R.O.G.',2008,'Bilim kurgu · Komedi','A.R.O.G.','◉'],['Aşk Tesadüfleri Sever',2011,'Romantik · Dram','AŞK\nTESADÜFLERİ','♡'],['Kelebeğin Rüyası',2013,'Dram · Romantik','KELEBEĞİN\nRÜYASI','❀'],['Kış Uykusu',2014,'Dram','KIŞ\nUYKUSU','❄'],['Ayla',2017,'Dram · Savaş','AYLA','☾'],['Aile Arasında',2017,'Komedi','AİLE\nARASINDA','⌂'],['Ölümlü Dünya',2018,'Komedi · Aksiyon','ÖLÜMLÜ\nDÜNYA','✦'],['7. Koğuştaki Mucize',2019,'Dram','7. KOĞUŞTAKİ\nMUCİZE','★'],['Bergen',2022,'Dram · Biyografi','BERGEN','✷'],['Dedemin İnsanları',2011,'Dram','DEDEMİN\nİNSANLARI','⌂']];
-const grid=document.querySelector('#grid'), count=document.querySelector('#count'), empty=document.querySelector('#empty');
-films.forEach((f,i)=>{const card=document.createElement('article');card.className='card';card.dataset.search=(f.join(' ')).toLocaleLowerCase('tr');const a=document.createElement('a');a.className=`poster p${i%8}`;a.href='https://www.youtube.com/results?search_query='+encodeURIComponent(`${f[0]} ${f[1]} Türk filmi`);a.target='_blank';a.rel='noreferrer';a.setAttribute('aria-label',f[0]+' filmini YouTube’da ara');for(const [cls,txt] of [['label',`TÜRK SİNEMASI · ${f[1]}`],['art',f[4]],['title',f[3]],['play','▶']]){const s=document.createElement('span');s.className=cls;s.textContent=txt;a.append(s)}const info=document.createElement('div');info.className='info';const d=document.createElement('div');const h=document.createElement('h3');h.textContent=f[0];const p=document.createElement('p');p.textContent=`${f[2]} · ${f[1]}`;d.append(h,p);const n=document.createElement('span');n.className='num';n.textContent=String(i+1).padStart(2,'0');info.append(d,n);card.append(a,info);grid.append(card)});
-const cards=[...grid.children];function filter(){const q=document.querySelector('#search').value.trim().toLocaleLowerCase('tr');let n=0;cards.forEach(c=>{const show=c.dataset.search.includes(q);c.classList.toggle('hide',!show);if(show)n++});count.textContent=String(n).padStart(2,'0')+' FİLM';empty.classList.toggle('hide',n>0)}document.querySelector('#search').addEventListener('input',filter);filter();
-</script></body></html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f4f0" />
+    <title>İcibici · Türk Filmleri</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap");
+
+      :root {
+        font-family: "DM Sans", sans-serif;
+        color: #292a27;
+        background: #f5f4f0;
+        --muted: #85857e;
+        --line: #e3e1da;
+        --accent: #b95038;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .top {
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 max(7vw, 22px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand {
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: -0.04em;
+      }
+
+      .brand i {
+        font-style: normal;
+        color: var(--muted);
+        font-weight: 400;
+      }
+
+      .mark {
+        display: inline-grid;
+        place-items: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #292a27;
+        color: #f5f4f0;
+        font-size: 9px;
+        margin-right: 9px;
+      }
+
+      .yt {
+        font-size: 10px;
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .yt b {
+        color: var(--accent);
+      }
+
+      main {
+        width: min(1060px, 86vw);
+        margin: auto;
+      }
+
+      .intro {
+        padding: 65px 0 50px;
+        position: relative;
+      }
+
+      .eyebrow {
+        font: 500 9px "DM Mono", monospace;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        margin: 0 0 13px;
+      }
+
+      .intro h1 {
+        font-size: clamp(42px, 6vw, 65px);
+        line-height: 0.99;
+        letter-spacing: -0.065em;
+        font-weight: 500;
+        margin: 0;
+      }
+
+      .intro h1 em {
+        font-family: "Playfair Display", serif;
+        color: var(--accent);
+      }
+
+      .copy {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 18px 0 0;
+      }
+
+      .search {
+        position: absolute;
+        right: 0;
+        bottom: 53px;
+        width: 240px;
+        border: 0;
+        border-bottom: 1px solid #c9c6bd;
+        background: transparent;
+        padding: 10px 2px;
+        font: 11px "DM Sans", sans-serif;
+        outline: none;
+      }
+
+      .heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 14px;
+        margin-bottom: 19px;
+      }
+
+      .heading .eyebrow {
+        margin: 0 0 6px;
+      }
+
+      .heading h2 {
+        font-size: 18px;
+        letter-spacing: -0.04em;
+        font-weight: 500;
+        margin: 0;
+      }
+
+      .count {
+        font: 9px "DM Mono", monospace;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 28px 20px;
+      }
+
+      .card {
+        min-width: 0;
+      }
+
+      .poster {
+        aspect-ratio: 1.42;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        color: #fff;
+        padding: 13px;
+        isolation: isolate;
+        transition: transform 0.18s;
+      }
+
+      .poster:hover {
+        transform: translateY(-3px);
+      }
+
+      .poster::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(ellipse at 72% 32%, rgba(255, 223, 170, 0.35), transparent 40%),
+          linear-gradient(145deg, transparent 42%, rgba(10, 13, 15, 0.4));
+      }
+
+      .poster::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.08),
+          transparent 38%,
+          rgba(0, 0, 0, 0.52)
+        );
+      }
+
+      .p0 {
+        background: linear-gradient(135deg, #bd7a4c, #5a433d);
+      }
+
+      .p1 {
+        background: linear-gradient(145deg, #d29a61, #5e3835);
+      }
+
+      .p2 {
+        background: linear-gradient(135deg, #536e62, #263d3c);
+      }
+
+      .p3 {
+        background: linear-gradient(135deg, #ad8056, #51443a);
+      }
+
+      .p4 {
+        background: linear-gradient(135deg, #a46a4e, #353d3c);
+      }
+
+      .p5 {
+        background: linear-gradient(135deg, #809369, #424b43);
+      }
+
+      .p6 {
+        background: linear-gradient(135deg, #98725b, #3e4941);
+      }
+
+      .p7 {
+        background: linear-gradient(135deg, #566779, #292d3d);
+      }
+
+      .label {
+        font: 8px "DM Mono", monospace;
+        letter-spacing: 0.08em;
+        opacity: 0.88;
+      }
+
+      .art {
+        position: absolute;
+        right: 15%;
+        top: 17%;
+        font-size: 82px;
+        color: rgba(245, 223, 181, 0.7);
+        text-shadow: 0 3px 25px #342a24;
+      }
+
+      .title {
+        position: absolute;
+        left: 14px;
+        bottom: 14px;
+        font-size: 22px;
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        white-space: pre-line;
+      }
+
+      .play {
+        position: absolute;
+        right: 13px;
+        bottom: 14px;
+        border: 1px solid #ffffff99;
+        border-radius: 50%;
+        width: 27px;
+        height: 27px;
+        display: grid;
+        place-items: center;
+        font-size: 9px;
+        opacity: 0;
+      }
+
+      .poster:hover .play {
+        opacity: 1;
+      }
+
+      .info {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 1px;
+      }
+
+      .info h3 {
+        font-size: 12px;
+        margin: 0 0 5px;
+        font-weight: 600;
+      }
+
+      .info p {
+        font-size: 9px;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .num {
+        font: 9px "DM Mono", monospace;
+        color: #aaa89f;
+      }
+
+      .empty {
+        padding: 36px 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 50px;
+        padding: 16px 0 22px;
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 9px;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      @media (max-width: 700px) {
+        main {
+          width: 88vw;
+        }
+
+        .intro {
+          padding: 48px 0 25px;
+        }
+
+        .search {
+          position: static;
+          display: block;
+          width: min(100%, 350px);
+          margin-top: 24px;
+        }
+
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 23px 13px;
+        }
+
+        .title {
+          font-size: 19px;
+        }
+      }
+
+      @media (max-width: 430px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .poster {
+          aspect-ratio: 1.6;
+        }
+
+        .title {
+          font-size: 23px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <span class="mark">▶</span>icibici <i>/ film seçkisi</i>
+      </div>
+      <a class="yt" href="https://youtube.com" target="_blank" rel="noreferrer">
+        YouTube <b>↗</b>
+      </a>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow">TÜRK SİNEMASINDAN SEÇKİ</p>
+        <h1>Bu akşam ne<br /><em>izlesek?</em></h1>
+        <p class="copy">Bir film seç, YouTube’da arayıp izlemeye başla.</p>
+        <input
+          id="search"
+          class="search"
+          type="search"
+          placeholder="Film ara…"
+          aria-label="Film ara"
+        />
+      </section>
+
+      <section>
+        <div class="heading">
+          <div>
+            <p class="eyebrow">İZLEME LİSTESİ</p>
+            <h2>Türk filmleri</h2>
+          </div>
+          <span class="count" id="count"></span>
+        </div>
+        <div class="grid" id="grid"></div>
+        <p class="empty hide" id="empty">Bu isimde film bulunamadı.</p>
+      </section>
+
+      <footer>
+        <span>Bir karta tıklayınca YouTube araması açılır.</span>
+        <span>İCİBİCİ · 01</span>
+      </footer>
+    </main>
+
+    <script>
+      const films = [
+        ["Hababam Sınıfı", 1975, "Komedi", "HABABAM", "✳"],
+        ["Tosun Paşa", 1976, "Komedi", "TOSUN\nPAŞA", "♜"],
+        ["Süt Kardeşler", 1976, "Komedi", "SÜT\nKARDEŞLER", "☾"],
+        ["Neşeli Günler", 1978, "Aile · Komedi", "NEŞELİ\nGÜNLER", "☼"],
+        ["Çöpçüler Kralı", 1977, "Komedi", "ÇÖPÇÜLER\nKRALI", "✦"],
+        ["Gülen Gözler", 1977, "Aile · Komedi", "GÜLEN\nGÖZLER", "☺"],
+        ["Bizim Aile", 1975, "Aile · Dram", "BİZİM\nAİLE", "⌂"],
+        ["Canım Kardeşim", 1973, "Dram", "CANIM\nKARDEŞİM", "♡"],
+        ["Selvi Boylum Al Yazmalım", 1977, "Dram · Romantik", "AL\nYAZMALIM", "❋"],
+        ["Eşkıya", 1996, "Dram · Suç", "EŞKIYA", "◈"],
+        ["Vizontele", 2001, "Komedi · Dram", "VİZONTELE", "▣"],
+        ["G.O.R.A.", 2004, "Bilim kurgu · Komedi", "G.O.R.A.", "✧"],
+        ["Babam ve Oğlum", 2005, "Dram", "BABAM VE\nOĞLUM", "☁"],
+        ["Organize İşler", 2005, "Komedi · Suç", "ORGANİZE\nİŞLER", "♠"],
+        ["A.R.O.G.", 2008, "Bilim kurgu · Komedi", "A.R.O.G.", "◉"],
+        ["Aşk Tesadüfleri Sever", 2011, "Romantik · Dram", "AŞK\nTESADÜFLERİ", "♡"],
+        ["Kelebeğin Rüyası", 2013, "Dram · Romantik", "KELEBEĞİN\nRÜYASI", "❀"],
+        ["Kış Uykusu", 2014, "Dram", "KIŞ\nUYKUSU", "❄"],
+        ["Ayla", 2017, "Dram · Savaş", "AYLA", "☾"],
+        ["Aile Arasında", 2017, "Komedi", "AİLE\nARASINDA", "⌂"],
+        ["Ölümlü Dünya", 2018, "Komedi · Aksiyon", "ÖLÜMLÜ\nDÜNYA", "✦"],
+        ["7. Koğuştaki Mucize", 2019, "Dram", "7. KOĞUŞTAKİ\nMUCİZE", "★"],
+        ["Bergen", 2022, "Dram · Biyografi", "BERGEN", "✷"],
+        ["Dedemin İnsanları", 2011, "Dram", "DEDEMİN\nİNSANLARI", "⌂"],
+      ];
+
+      const grid = document.querySelector("#grid");
+      const count = document.querySelector("#count");
+      const empty = document.querySelector("#empty");
+
+      films.forEach((film, index) => {
+        const card = document.createElement("article");
+        card.className = "card";
+        card.dataset.search = film.join(" ").toLocaleLowerCase("tr");
+
+        const link = document.createElement("a");
+        link.className = `poster p${index % 8}`;
+        link.href =
+          "https://www.youtube.com/results?search_query=" +
+          encodeURIComponent(`${film[0]} ${film[1]} Türk filmi`);
+        link.target = "_blank";
+        link.rel = "noreferrer";
+        link.setAttribute("aria-label", `${film[0]} filmini YouTube’da ara`);
+
+        for (const [className, text] of [
+          ["label", `TÜRK SİNEMASI · ${film[1]}`],
+          ["art", film[4]],
+          ["title", film[3]],
+          ["play", "▶"],
+        ]) {
+          const span = document.createElement("span");
+          span.className = className;
+          span.textContent = text;
+          link.append(span);
+        }
+
+        const info = document.createElement("div");
+        info.className = "info";
+
+        const details = document.createElement("div");
+        const title = document.createElement("h3");
+        title.textContent = film[0];
+
+        const description = document.createElement("p");
+        description.textContent = `${film[2]} · ${film[1]}`;
+        details.append(title, description);
+
+        const number = document.createElement("span");
+        number.className = "num";
+        number.textContent = String(index + 1).padStart(2, "0");
+        info.append(details, number);
+
+        card.append(link, info);
+        grid.append(card);
+      });
+
+      const cards = [...grid.children];
+
+      function filterFilms() {
+        const query = document
+          .querySelector("#search")
+          .value.trim()
+          .toLocaleLowerCase("tr");
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const isVisible = card.dataset.search.includes(query);
+          card.classList.toggle("hide", !isVisible);
+
+          if (isVisible) {
+            visibleCount++;
+          }
+        });
+
+        count.textContent = `${String(visibleCount).padStart(2, "0")} FİLM`;
+        empty.classList.toggle("hide", visibleCount > 0);
+      }
+
+      document.querySelector("#search").addEventListener("input", filterFilms);
+      filterFilms();
+    </script>
+  </body>
+</html>
