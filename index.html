@@ -1,499 +1,73 @@
 <!doctype html>
 <html lang="tr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f5f4f0" />
-    <title>İcibici · Türk Filmleri</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap");
-
-      :root {
-        font-family: "DM Sans", sans-serif;
-        color: #292a27;
-        background: #f5f4f0;
-        --muted: #85857e;
-        --line: #e3e1da;
-        --accent: #b95038;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-      }
-
-      .top {
-        height: 68px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 max(7vw, 22px);
-        border-bottom: 1px solid var(--line);
-      }
-
-      .brand {
-        font-weight: 700;
-        font-size: 14px;
-        letter-spacing: -0.04em;
-      }
-
-      .brand i {
-        font-style: normal;
-        color: var(--muted);
-        font-weight: 400;
-      }
-
-      .mark {
-        display: inline-grid;
-        place-items: center;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        background: #292a27;
-        color: #f5f4f0;
-        font-size: 9px;
-        margin-right: 9px;
-      }
-
-      .yt {
-        font-size: 10px;
-        color: var(--muted);
-        text-decoration: none;
-      }
-
-      .yt b {
-        color: var(--accent);
-      }
-
-      main {
-        width: min(1060px, 86vw);
-        margin: auto;
-      }
-
-      .intro {
-        padding: 65px 0 50px;
-        position: relative;
-      }
-
-      .eyebrow {
-        font: 500 9px "DM Mono", monospace;
-        letter-spacing: 0.14em;
-        color: var(--muted);
-        margin: 0 0 13px;
-      }
-
-      .intro h1 {
-        font-size: clamp(42px, 6vw, 65px);
-        line-height: 0.99;
-        letter-spacing: -0.065em;
-        font-weight: 500;
-        margin: 0;
-      }
-
-      .intro h1 em {
-        font-family: "Playfair Display", serif;
-        color: var(--accent);
-      }
-
-      .copy {
-        font-size: 12px;
-        color: var(--muted);
-        margin: 18px 0 0;
-      }
-
-      .search {
-        position: absolute;
-        right: 0;
-        bottom: 53px;
-        width: 240px;
-        border: 0;
-        border-bottom: 1px solid #c9c6bd;
-        background: transparent;
-        padding: 10px 2px;
-        font: 11px "DM Sans", sans-serif;
-        outline: none;
-      }
-
-      .heading {
-        display: flex;
-        align-items: end;
-        justify-content: space-between;
-        border-bottom: 1px solid var(--line);
-        padding-bottom: 14px;
-        margin-bottom: 19px;
-      }
-
-      .heading .eyebrow {
-        margin: 0 0 6px;
-      }
-
-      .heading h2 {
-        font-size: 18px;
-        letter-spacing: -0.04em;
-        font-weight: 500;
-        margin: 0;
-      }
-
-      .count {
-        font: 9px "DM Mono", monospace;
-        color: var(--muted);
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 28px 20px;
-      }
-
-      .card {
-        min-width: 0;
-      }
-
-      .poster {
-        aspect-ratio: 1.42;
-        display: block;
-        position: relative;
-        overflow: hidden;
-        text-decoration: none;
-        color: #fff;
-        padding: 13px;
-        isolation: isolate;
-        transition: transform 0.18s;
-      }
-
-      .poster:hover {
-        transform: translateY(-3px);
-      }
-
-      .poster::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        background:
-          radial-gradient(ellipse at 72% 32%, rgba(255, 223, 170, 0.35), transparent 40%),
-          linear-gradient(145deg, transparent 42%, rgba(10, 13, 15, 0.4));
-      }
-
-      .poster::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.08),
-          transparent 38%,
-          rgba(0, 0, 0, 0.52)
-        );
-      }
-
-      .p0 {
-        background: linear-gradient(135deg, #bd7a4c, #5a433d);
-      }
-
-      .p1 {
-        background: linear-gradient(145deg, #d29a61, #5e3835);
-      }
-
-      .p2 {
-        background: linear-gradient(135deg, #536e62, #263d3c);
-      }
-
-      .p3 {
-        background: linear-gradient(135deg, #ad8056, #51443a);
-      }
-
-      .p4 {
-        background: linear-gradient(135deg, #a46a4e, #353d3c);
-      }
-
-      .p5 {
-        background: linear-gradient(135deg, #809369, #424b43);
-      }
-
-      .p6 {
-        background: linear-gradient(135deg, #98725b, #3e4941);
-      }
-
-      .p7 {
-        background: linear-gradient(135deg, #566779, #292d3d);
-      }
-
-      .label {
-        font: 8px "DM Mono", monospace;
-        letter-spacing: 0.08em;
-        opacity: 0.88;
-      }
-
-      .art {
-        position: absolute;
-        right: 15%;
-        top: 17%;
-        font-size: 82px;
-        color: rgba(245, 223, 181, 0.7);
-        text-shadow: 0 3px 25px #342a24;
-      }
-
-      .title {
-        position: absolute;
-        left: 14px;
-        bottom: 14px;
-        font-size: 22px;
-        line-height: 0.95;
-        letter-spacing: -0.04em;
-        white-space: pre-line;
-      }
-
-      .play {
-        position: absolute;
-        right: 13px;
-        bottom: 14px;
-        border: 1px solid #ffffff99;
-        border-radius: 50%;
-        width: 27px;
-        height: 27px;
-        display: grid;
-        place-items: center;
-        font-size: 9px;
-        opacity: 0;
-      }
-
-      .poster:hover .play {
-        opacity: 1;
-      }
-
-      .info {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 1px;
-      }
-
-      .info h3 {
-        font-size: 12px;
-        margin: 0 0 5px;
-        font-weight: 600;
-      }
-
-      .info p {
-        font-size: 9px;
-        color: var(--muted);
-        margin: 0;
-      }
-
-      .num {
-        font: 9px "DM Mono", monospace;
-        color: #aaa89f;
-      }
-
-      .empty {
-        padding: 36px 0;
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      footer {
-        border-top: 1px solid var(--line);
-        margin-top: 50px;
-        padding: 16px 0 22px;
-        display: flex;
-        justify-content: space-between;
-        color: var(--muted);
-        font-size: 9px;
-      }
-
-      .hide {
-        display: none;
-      }
-
-      @media (max-width: 700px) {
-        main {
-          width: 88vw;
-        }
-
-        .intro {
-          padding: 48px 0 25px;
-        }
-
-        .search {
-          position: static;
-          display: block;
-          width: min(100%, 350px);
-          margin-top: 24px;
-        }
-
-        .grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 23px 13px;
-        }
-
-        .title {
-          font-size: 19px;
-        }
-      }
-
-      @media (max-width: 430px) {
-        .grid {
-          grid-template-columns: 1fr;
-        }
-
-        .poster {
-          aspect-ratio: 1.6;
-        }
-
-        .title {
-          font-size: 23px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="top">
-      <div class="brand">
-        <span class="mark">▶</span>icibici <i>/ film seçkisi</i>
-      </div>
-      <a class="yt" href="https://youtube.com" target="_blank" rel="noreferrer">
-        YouTube <b>↗</b>
-      </a>
-    </header>
-
-    <main>
-      <section class="intro">
-        <p class="eyebrow">TÜRK SİNEMASINDAN SEÇKİ</p>
-        <h1>Bu akşam ne<br /><em>izlesek?</em></h1>
-        <p class="copy">Bir film seç, YouTube’da arayıp izlemeye başla.</p>
-        <input
-          id="search"
-          class="search"
-          type="search"
-          placeholder="Film ara…"
-          aria-label="Film ara"
-        />
-      </section>
-
-      <section>
-        <div class="heading">
-          <div>
-            <p class="eyebrow">İZLEME LİSTESİ</p>
-            <h2>Türk filmleri</h2>
-          </div>
-          <span class="count" id="count"></span>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f8f6">
+  <meta name="description" content="Yudum ile su içme hedefini takip et ve gün boyunca küçük hatırlatmalar al.">
+  <title>Yudum — Su içme hatırlatıcın</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+    :root{font-family:'DM Sans',sans-serif;color:#173b3b;background:#edf3f0;--ink:#173b3b;--muted:#78908c;--teal:#138b83;--mint:#dff3ed;--paper:#fff;--line:#e8efec;--coral:#ff9b7a}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 10%,#e3f3eb,transparent 34%),#edf3f0}
+    button{font:inherit;cursor:pointer}.shell{min-height:100vh;display:grid;grid-template-columns:220px minmax(0,1080px);gap:42px;justify-content:center;padding:52px 28px}
+    .side{display:flex;flex-direction:column;min-height:800px}.brand{display:flex;align-items:center;gap:11px;font:800 23px Manrope,sans-serif;letter-spacing:-1.1px}.brand-mark{width:39px;height:39px;border-radius:15px;background:var(--teal);display:grid;place-items:center;color:white;box-shadow:0 8px 18px #138b8330}.brand-mark svg{width:22px}.tagline{margin:6px 0 48px 50px;font-size:11px;color:var(--muted)}.nav{display:grid;gap:9px}.nav button{border:0;background:transparent;color:#819793;padding:14px 15px;border-radius:14px;text-align:left;display:flex;align-items:center;gap:13px;font-size:13px;font-weight:600;transition:.2s}.nav button.active,.nav button:hover{background:#fff;color:var(--teal);box-shadow:0 5px 20px #2559490a}.nav svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8}.side-note{margin-top:auto;background:#dff3ed;border-radius:20px;padding:20px 17px;position:relative;overflow:hidden}.side-note:after{content:'✳';position:absolute;right:10px;top:-8px;font-size:54px;color:#b9e5d9;transform:rotate(12deg)}.side-note strong{font-size:12px;display:block;position:relative;z-index:1}.side-note p{font-size:10px;line-height:1.55;color:#63817a;margin:8px 0 0;max-width:150px;position:relative;z-index:1}
+    .app{width:100%;max-width:1080px;min-height:790px;background:#f8fbf9;border-radius:30px;padding:35px 44px 27px;box-shadow:0 25px 90px #244b3d15;position:relative;overflow:hidden}.topbar{display:flex;justify-content:space-between;align-items:center}.date{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.04em}.user{display:flex;align-items:center;gap:11px}.user-label{text-align:right;font-size:11px;font-weight:700}.user-label small{display:block;font-size:9px;font-weight:400;color:var(--muted);margin-top:3px}.avatar{width:39px;height:39px;background:#ffe9d8;border-radius:14px;display:grid;place-items:center;font-size:20px}.screen{display:none;animation:rise .25s ease}.screen.active{display:block}@keyframes rise{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+    .welcome{margin:42px 0 24px}.eyebrow{text-transform:uppercase;color:var(--teal);font-size:9px;letter-spacing:.15em;font-weight:800;margin:0 0 9px}.welcome h1,.page-title h1{font:700 29px Manrope,sans-serif;letter-spacing:-1.1px;margin:0}.welcome h1 span{color:var(--teal)}.welcome>p:last-child{font-size:12px;color:var(--muted);margin:8px 0 0}
+    .dashboard{display:grid;grid-template-columns:1.12fr .88fr;gap:19px}.card{background:#fff;border:1px solid #eef2f0;border-radius:22px;box-shadow:0 9px 28px #23554408}.water-card{min-height:338px;padding:23px 25px;position:relative;overflow:hidden;background:linear-gradient(140deg,#fff 43%,#f1fbf7)}.card-head{display:flex;justify-content:space-between;align-items:flex-start}.card-head h2,.small-card h2{font:700 14px Manrope,sans-serif;margin:0}.card-sub{font-size:10px;color:var(--muted);margin:5px 0 0}.goal-chip{background:#e9f6f1;color:#378a77;padding:7px 10px;border-radius:9px;font-size:9px;font-weight:700}.water-center{display:flex;align-items:center;justify-content:center;gap:27px;margin-top:25px}.glass{width:130px;height:165px;position:relative;filter:drop-shadow(0 12px 9px #148b8315)}.glass svg{width:100%;height:100%;overflow:visible}.water-stats strong{font:800 37px Manrope,sans-serif;letter-spacing:-2px;display:block}.water-stats strong span{font-size:14px;letter-spacing:0;color:#829994;font-weight:600}.water-stats p{font-size:10px;color:var(--muted);margin:4px 0 13px}.progress-track{height:6px;width:130px;background:#e7f1ed;border-radius:9px;overflow:hidden}.progress-fill{width:0;height:100%;background:linear-gradient(90deg,#1b9e91,#75d5ba);border-radius:9px;transition:width .35s}.progress-copy{font-size:9px;color:#62847b;margin-top:7px}.add-row{display:flex;justify-content:center;gap:9px;margin-top:19px}.add-btn{border:1px solid #dcece6;background:#fff;color:#31665c;border-radius:11px;padding:10px 13px;font-size:10px;font-weight:700;transition:.2s}.add-btn:hover{background:var(--teal);color:#fff;border-color:var(--teal);transform:translateY(-2px)}.add-btn.primary{background:var(--teal);color:#fff;border-color:var(--teal);padding-inline:17px}.side-stack{display:grid;grid-template-rows:1fr 1fr;gap:17px}.small-card{padding:20px 21px}.small-card-head{display:flex;justify-content:space-between;align-items:center}.icon-bubble{width:34px;height:34px;background:#fff0e8;border-radius:12px;display:grid;place-items:center;font-size:16px}.glasses{display:flex;gap:5px;margin:16px 0 7px}.glasses span{width:17px;height:25px;border:1.5px solid #adddd0;border-radius:3px 3px 6px 6px;position:relative;overflow:hidden}.glasses span:after{content:'';position:absolute;bottom:0;left:0;right:0;height:0;background:#62cbb0;transition:height .3s}.glasses span.filled:after{height:72%}.micro{font-size:9px;color:var(--muted)}.streak-line{display:flex;align-items:center;gap:11px;margin-top:16px}.streak-num{font:800 27px Manrope;color:#f08a67}.streak-line p{margin:0;font-size:10px;line-height:1.45;color:#6e8781}.week{display:flex;justify-content:space-between;margin-top:13px}.week span{text-align:center;color:#a2b2ae;font-size:8px}.week b{display:grid;place-items:center;width:22px;height:22px;border-radius:8px;background:#f0f5f3;color:#78918b;font-size:8px;margin-bottom:4px}.week b.done{background:#dff3ed;color:#148b83}.section-line{display:flex;align-items:center;justify-content:space-between;margin:26px 0 12px}.section-line h2{font:700 14px Manrope;margin:0}.text-btn{border:0;background:transparent;color:var(--teal);font-size:10px;font-weight:700}.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.time-item{padding:13px 14px;min-height:69px;display:flex;align-items:center;gap:11px}.time-icon{width:34px;height:34px;border-radius:11px;background:#f2f8f5;display:grid;place-items:center;font-size:15px}.time-item strong{display:block;font-size:10px}.time-item small{display:block;color:var(--muted);font-size:8px;margin-top:4px}.time-status{margin-left:auto;width:7px;height:7px;border-radius:50%;background:#b4c5bf}.time-status.done{background:#56c19b;box-shadow:0 0 0 3px #def4e9}
+    .page-title{margin:42px 0 23px}.page-title>p:last-child{color:var(--muted);font-size:12px;margin:8px 0 0}.reminder-banner{padding:23px 25px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(110deg,#dcf3eb,#f0faf6);margin-bottom:19px}.reminder-banner h2{font:700 17px Manrope;margin:0 0 7px}.reminder-banner p{margin:0;color:#66857d;font-size:11px}.bell-art{font-size:41px;padding-right:16px}.toggle{width:43px;height:24px;background:#b4c7c0;border:0;border-radius:20px;padding:3px;transition:.2s}.toggle:after{content:'';display:block;width:18px;height:18px;border-radius:50%;background:white;transition:.2s;box-shadow:0 1px 4px #0002}.toggle.on{background:var(--teal)}.toggle.on:after{transform:translateX(19px)}.reminder-list{padding:9px 21px}.reminder{display:flex;align-items:center;padding:15px 0;border-bottom:1px solid var(--line);gap:13px}.reminder:last-child{border:0}.reminder-icon{width:37px;height:37px;background:#f1f7f4;border-radius:13px;display:grid;place-items:center}.reminder-info{flex:1}.reminder-info strong{font-size:12px}.reminder-info p{margin:4px 0 0;color:var(--muted);font-size:9px}.reminder time{font:700 11px Manrope;color:#62827a;margin-right:8px}.schedule-note{margin-top:16px;padding:15px 18px;background:#fff8ed;border-radius:15px;color:#977853;font-size:10px;line-height:1.5}.schedule-note b{color:#7f6340}
+    .profile-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}.profile-card{padding:25px;text-align:center}.profile-avatar{width:76px;height:76px;margin:3px auto 13px;border-radius:25px;background:#ffeddf;display:grid;place-items:center;font-size:37px}.profile-card h2{font:700 17px Manrope;margin:0}.profile-card p{font-size:10px;color:var(--muted);margin:5px 0 18px}.edit{border:1px solid #d9ebe5;color:var(--teal);background:white;padding:9px 14px;border-radius:10px;font-size:10px;font-weight:700}.profile-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px}.profile-stats div{background:#f5f9f7;padding:13px 8px;border-radius:13px}.profile-stats strong{display:block;font:700 17px Manrope}.profile-stats small{font-size:8px;color:var(--muted)}.settings{padding:20px 22px}.settings h2{font:700 14px Manrope;margin:0 0 9px}.setting{padding:14px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}.setting:last-child{border:0}.setting-icon{width:33px;height:33px;display:grid;place-items:center;background:#f0f7f4;border-radius:11px}.setting-label{flex:1}.setting-label strong{font-size:10px;display:block}.setting-label small{font-size:8px;color:var(--muted);display:block;margin-top:4px}.setting-value{font-size:10px;color:#6f8e86}.about{margin-top:17px;padding:20px 22px}.about h2{font:700 13px Manrope;margin:0 0 11px}.about p{font-size:10px;color:#718b84;line-height:1.65;margin:5px 0}.about b{color:#315c51}.palette{display:flex;gap:7px;margin-top:12px}.swatch{width:22px;height:22px;border-radius:8px;border:2px solid white;box-shadow:0 1px 5px #0002}.foot{position:absolute;bottom:16px;left:44px;right:44px;border-top:1px solid #eaf0ed;padding-top:13px;display:flex;justify-content:space-between;font-size:8px;color:#9aaca7}.foot b{color:#6c8981;letter-spacing:.08em}
+    @media(max-width:950px){.shell{grid-template-columns:1fr;padding:20px}.side{min-height:0;display:grid;grid-template-columns:1fr auto;align-items:center}.tagline,.side-note{display:none}.brand{font-size:19px}.brand-mark{width:34px;height:34px}.nav{display:flex;gap:3px}.nav button{padding:10px;border-radius:12px;font-size:0}.nav svg{width:19px}.app{min-height:calc(100vh - 95px);padding:27px 30px 52px}.foot{left:30px;right:30px}}
+    @media(max-width:600px){body{background:#f8fbf9}.shell{display:block;padding:0;min-height:100vh}.side{position:fixed;z-index:5;bottom:0;left:0;right:0;background:#fff;padding:10px 15px calc(10px + env(safe-area-inset-bottom));display:flex;justify-content:center;box-shadow:0 -6px 24px #244b3d12}.brand{display:none}.nav{width:100%;justify-content:space-around}.nav button{display:grid;justify-items:center;gap:4px;padding:7px 13px;font-size:8px}.nav button:after{font-size:8px;content:attr(data-label)}.nav svg{width:19px;height:19px}.app{min-height:100vh;border-radius:0;padding:20px 19px 100px;box-shadow:none}.topbar{padding:3px 1px}.date{font-size:9px}.welcome{margin:35px 0 20px}.welcome h1,.page-title h1{font-size:26px}.dashboard{grid-template-columns:1fr;gap:13px}.water-card{min-height:324px;padding:20px}.water-center{margin-top:22px;gap:22px}.glass{width:116px;height:150px}.water-stats strong{font-size:34px}.side-stack{grid-template-columns:1fr 1fr;grid-template-rows:1fr;gap:11px}.small-card{padding:16px 14px}.small-card h2{font-size:12px}.icon-bubble{width:30px;height:30px}.section-line{margin:22px 0 10px}.timeline{grid-template-columns:1fr 1fr;gap:8px}.time-item{min-height:63px;padding:10px}.page-title{margin:35px 0 20px}.reminder-banner{padding:18px}.bell-art{font-size:31px}.profile-grid{grid-template-columns:1fr}.profile-card{padding:20px}.profile-stats{max-width:330px;margin:15px auto 0}.settings{padding:17px 19px}.foot{left:19px;right:19px;bottom:73px;padding-top:10px}.about{margin-bottom:10px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  .edit-form{display:grid;gap:8px;margin:15px auto 0;max-width:250px;text-align:left}.edit-form[hidden]{display:none}.edit-form label{font-size:9px;font-weight:700;color:#66817a}.edit-form input{width:100%;border:1px solid #d9e9e3;border-radius:10px;padding:10px 11px;color:var(--ink);font:12px 'DM Sans',sans-serif;outline:none}.edit-form input:focus{border-color:var(--teal);box-shadow:0 0 0 3px #138b831c}.edit-actions{display:flex;gap:7px;justify-content:flex-end}.edit-actions button{border-radius:9px;padding:8px 11px;font-size:9px;font-weight:700}.save-edit{background:var(--teal);color:white;border:1px solid var(--teal)}.cancel-edit{background:white;color:#69847d;border:1px solid #d9e9e3}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side" aria-label="Uygulama gezinme">
+      <div><div class="brand"><span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5S5.7 10 5.7 14.8a6.3 6.3 0 0 0 12.6 0C18.3 10 12 2.5 12 2.5Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 15.2c.2 1.4 1.2 2.3 2.7 2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>yudum</div><p class="tagline">Gününe iyi bak.</p></div>
+      <nav class="nav">
+        <button class="active" data-screen="home" data-label="Ana sayfa" aria-label="Ana sayfa"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>Ana sayfa</button>
+        <button data-screen="reminders" data-label="Hatırlatıcılar" aria-label="Hatırlatıcılar"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>Hatırlatıcılar</button>
+        <button data-screen="profile" data-label="Profil" aria-label="Profil"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profil</button>
+      </nav>
+      <div class="side-note"><strong>Küçük bir yudum,<br>iyi bir başlangıç.</strong><p>Her yudumda kendine biraz daha iyi bak.</p></div>
+    </aside>
+    <main class="app">
+      <header class="topbar"><span class="date" id="today">BUGÜN · 7 KASIM</span><div class="user"><span class="user-label">Merhaba, <span id="headerName">Deniz</span><small>Bugün kendine iyi bak 🌿</small></span><span class="avatar" aria-hidden="true">😊</span></div></header>
+      <section class="screen active" id="home" aria-label="Ana sayfa">
+        <div class="welcome"><p class="eyebrow">GÜNÜN NASIL GEÇİYOR?</p><h1>Merhaba, <span>Deniz</span> 👋</h1><p>Bir yudum suyla enerjini tazelemeye ne dersin?</p></div>
+        <div class="dashboard">
+          <section class="card water-card"><div class="card-head"><div><h2>Günlük su takibin</h2><p class="card-sub">Her yudum seni hedefine yaklaştırır.</p></div><span class="goal-chip">HEDEF 2.0 L</span></div>
+            <div class="water-center"><div class="glass" aria-label="Bardak doluluk göstergesi"><svg viewBox="0 0 140 175" role="img"><defs><clipPath id="glassClip"><path d="M25 18h90l-9 137a8 8 0 0 1-8 7H42a8 8 0 0 1-8-7z"/></clipPath><linearGradient id="waterGrad" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#57cbb1"/><stop offset="1" stop-color="#138b83"/></linearGradient></defs><path d="M25 18h90l-9 137a8 8 0 0 1-8 7H42a8 8 0 0 1-8-7z" fill="#eef8f5" stroke="#a9d6cb" stroke-width="3"/><rect id="waterFill" x="25" y="175" width="90" height="0" fill="url(#waterGrad)" clip-path="url(#glassClip)"/><path d="M40 38h15" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".8"/><path d="M42 53h7" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".6"/></svg></div><div class="water-stats"><strong><span id="amount">0</span><span> ml</span></strong><p>bugün içtin</p><div class="progress-track"><div class="progress-fill" id="progress"></div></div><div class="progress-copy" id="progressText">Günlük hedefin %0'ı</div></div></div>
+            <div class="add-row"><button class="add-btn" data-add="150">+ 150 ml</button><button class="add-btn primary" data-add="250">＋ 250 ml ekle</button><button class="add-btn" data-add="500">+ 500 ml</button></div>
+          </section>
+          <div class="side-stack"><section class="card small-card"><div class="small-card-head"><div><h2>Bugünkü bardaklar</h2><p class="card-sub">Her biri 250 ml</p></div><span class="icon-bubble">🥛</span></div><div class="glasses" id="glasses" aria-label="İçilen bardak sayısı"></div><div class="micro" id="glassText">Hadi ilk bardağını iç!</div></section>
+            <section class="card small-card"><div class="small-card-head"><div><h2>Serini koru</h2><p class="card-sub">Hedef serin</p></div><span class="icon-bubble">🔥</span></div><div class="streak-line"><strong class="streak-num">3</strong><p>gündür hedefini<br>tamamlıyorsun!</p></div><div class="week"><span><b class="done">P</b>Pzt</span><span><b class="done">S</b>Sal</span><span><b class="done">Ç</b>Çar</span><span><b>Pe</b>Per</span><span><b>C</b>Cum</span><span><b>Ct</b>Cmt</span><span><b>P</b>Paz</span></div></section></div>
         </div>
-        <div class="grid" id="grid"></div>
-        <p class="empty hide" id="empty">Bu isimde film bulunamadı.</p>
+        <div class="section-line"><h2>Günün akışı</h2><button class="text-btn" data-go="reminders">Tüm hatırlatmalar →</button></div>
+        <div class="timeline"><div class="card time-item"><span class="time-icon">🌤️</span><span><strong>Güne başla</strong><small>09:00 · 250 ml</small></span><i class="time-status done"></i></div><div class="card time-item"><span class="time-icon">☕</span><span><strong>Küçük bir mola</strong><small>11:00 · 250 ml</small></span><i class="time-status"></i></div><div class="card time-item"><span class="time-icon">🌿</span><span><strong>Öğleden sonra</strong><small>14:00 · 250 ml</small></span><i class="time-status"></i></div><div class="card time-item"><span class="time-icon">🌙</span><span><strong>Akşam yudumu</strong><small>17:00 · 250 ml</small></span><i class="time-status"></i></div></div>
       </section>
-
-      <footer>
-        <span>Bir karta tıklayınca YouTube araması açılır.</span>
-        <span>İCİBİCİ · 01</span>
-      </footer>
+      <section class="screen" id="reminders" aria-label="Hatırlatıcılar"><div class="page-title"><p class="eyebrow">RUTİNİNİ BELİRLE</p><h1>Hatırlatıcılar</h1><p>Gün içinde su içmeyi sana nazikçe hatırlatalım.</p></div><section class="card reminder-banner"><div><h2>Su hatırlatmaları</h2><p>Seçtiğin saatlerde küçük bir bildirim al.</p></div><span class="bell-art">🔔</span><button class="toggle on" aria-label="Hatırlatmaları aç veya kapat" aria-pressed="true"></button></section><section class="card reminder-list"><div class="reminder"><span class="reminder-icon">🌤️</span><span class="reminder-info"><strong>Güne başla</strong><p>Uyandıktan sonra ilk yudumun</p></span><time>09:00</time><button class="toggle on" aria-label="Güne başla hatırlatıcısı" aria-pressed="true"></button></div><div class="reminder"><span class="reminder-icon">☕</span><span class="reminder-info"><strong>Küçük bir mola</strong><p>Bir bardak su için mola ver</p></span><time>11:00</time><button class="toggle on" aria-label="Mola hatırlatıcısı" aria-pressed="true"></button></div><div class="reminder"><span class="reminder-icon">🌿</span><span class="reminder-info"><strong>Öğleden sonra</strong><p>Enerjini tazeleme zamanı</p></span><time>14:00</time><button class="toggle on" aria-label="Öğleden sonra hatırlatıcısı" aria-pressed="true"></button></div><div class="reminder"><span class="reminder-icon">🌙</span><span class="reminder-info"><strong>Akşam yudumu</strong><p>Günün son su molası</p></span><time>17:00</time><button class="toggle" aria-label="Akşam hatırlatıcısı" aria-pressed="false"></button></div></section><div class="schedule-note">💡 <b>Küçük ipucu:</b> Hatırlatmalar örnek bir günlük planı gösterir. Gerçek bildirim göndermek için uygulama sürümüne bildirim izni eklenebilir.</div></section>
+      <section class="screen" id="profile" aria-label="Profil"><div class="page-title"><p class="eyebrow">SANA ÖZEL</p><h1>Profilim</h1><p>Hedeflerini ve uygulama tercihlerini düzenle.</p></div><div class="profile-grid"><section class="card profile-card"><div class="profile-avatar">😊</div><h2 id="profileName">Deniz Yılmaz</h2><p>Yudum'a bugün katıldı</p><button class="edit" id="editName" type="button" aria-expanded="false" aria-controls="editForm">Profili düzenle</button><form class="edit-form" id="editForm" hidden><label for="nameInput">Adın ve soyadın</label><input id="nameInput" name="name" type="text" maxlength="40" autocomplete="name" required><div class="edit-actions"><button class="cancel-edit" id="cancelEdit" type="button">İptal</button><button class="save-edit" type="submit">Kaydet</button></div></form><div class="profile-stats"><div><strong>3 gün</strong><small>hedef serisi</small></div><div><strong id="profileAmount">0 ml</strong><small>bugün içilen</small></div></div></section><section class="card settings"><h2>Günlük hedef</h2><div class="setting"><span class="setting-icon">💧</span><span class="setting-label"><strong>Su hedefin</strong><small>Günlük içmek istediğin miktar</small></span><span class="setting-value">2.000 ml</span></div><div class="setting"><span class="setting-icon">⏰</span><span class="setting-label"><strong>Hatırlatma aralığı</strong><small>Gün içinde nazik hatırlatmalar</small></span><span class="setting-value">2 saat</span></div><div class="setting"><span class="setting-icon">🌙</span><span class="setting-label"><strong>Sessiz saatler</strong><small>Akşam dinlenme zamanı</small></span><span class="setting-value">21:00–08:00</span></div><div class="setting"><span class="setting-icon">⚖️</span><span class="setting-label"><strong>Ölçü birimi</strong><small>Su miktarını görüntüle</small></span><span class="setting-value">ml</span></div></section></div><section class="card about"><h2>Yudum hakkında</h2><p><b>Amacı:</b> Gün boyunca su içmeyi hatırlatmak, günlük tüketimi takip etmeye yardımcı olmak.</p><p><b>Hedef kitlesi:</b> Yoğun okul veya iş temposunda su içmeyi unutan gençler ve yetişkinler.</p><p><b>Logo fikri:</b> Su damlası içindeki küçük gülümseme, sağlıklı alışkanlığı sıcak ve kolay hatırlanır kılar.</p><p><b>Tasarım tarzı:</b> Sade, yumuşak köşeli ve ferah; kısa kartlar ve anlaşılır ilerleme göstergeleri.</p><p><b>Renk paleti:</b> Okyanus yeşili, nane, kırık beyaz ve şeftali vurgusu.</p><div class="palette" aria-label="Renk paleti"><span class="swatch" style="background:#138b83" title="Okyanus yeşili"></span><span class="swatch" style="background:#dff3ed" title="Nane"></span><span class="swatch" style="background:#f8fbf9" title="Kırık beyaz"></span><span class="swatch" style="background:#ff9b7a" title="Şeftali"></span><span class="swatch" style="background:#173b3b" title="Koyu teal"></span></div></section></section>
+      <footer class="foot"><span>Bir yudumla başla, iyi hissetmeye devam et.</span><b>YUDUM · 01</b></footer>
     </main>
-
-    <script>
-      const films = [
-        ["Hababam Sınıfı", 1975, "Komedi", "HABABAM", "✳"],
-        ["Tosun Paşa", 1976, "Komedi", "TOSUN\nPAŞA", "♜"],
-        ["Süt Kardeşler", 1976, "Komedi", "SÜT\nKARDEŞLER", "☾"],
-        ["Neşeli Günler", 1978, "Aile · Komedi", "NEŞELİ\nGÜNLER", "☼"],
-        ["Çöpçüler Kralı", 1977, "Komedi", "ÇÖPÇÜLER\nKRALI", "✦"],
-        ["Gülen Gözler", 1977, "Aile · Komedi", "GÜLEN\nGÖZLER", "☺"],
-        ["Bizim Aile", 1975, "Aile · Dram", "BİZİM\nAİLE", "⌂"],
-        ["Canım Kardeşim", 1973, "Dram", "CANIM\nKARDEŞİM", "♡"],
-        ["Selvi Boylum Al Yazmalım", 1977, "Dram · Romantik", "AL\nYAZMALIM", "❋"],
-        ["Eşkıya", 1996, "Dram · Suç", "EŞKIYA", "◈"],
-        ["Vizontele", 2001, "Komedi · Dram", "VİZONTELE", "▣"],
-        ["G.O.R.A.", 2004, "Bilim kurgu · Komedi", "G.O.R.A.", "✧"],
-        ["Babam ve Oğlum", 2005, "Dram", "BABAM VE\nOĞLUM", "☁"],
-        ["Organize İşler", 2005, "Komedi · Suç", "ORGANİZE\nİŞLER", "♠"],
-        ["A.R.O.G.", 2008, "Bilim kurgu · Komedi", "A.R.O.G.", "◉"],
-        ["Aşk Tesadüfleri Sever", 2011, "Romantik · Dram", "AŞK\nTESADÜFLERİ", "♡"],
-        ["Kelebeğin Rüyası", 2013, "Dram · Romantik", "KELEBEĞİN\nRÜYASI", "❀"],
-        ["Kış Uykusu", 2014, "Dram", "KIŞ\nUYKUSU", "❄"],
-        ["Ayla", 2017, "Dram · Savaş", "AYLA", "☾"],
-        ["Aile Arasında", 2017, "Komedi", "AİLE\nARASINDA", "⌂"],
-        ["Ölümlü Dünya", 2018, "Komedi · Aksiyon", "ÖLÜMLÜ\nDÜNYA", "✦"],
-        ["7. Koğuştaki Mucize", 2019, "Dram", "7. KOĞUŞTAKİ\nMUCİZE", "★"],
-        ["Bergen", 2022, "Dram · Biyografi", "BERGEN", "✷"],
-        ["Dedemin İnsanları", 2011, "Dram", "DEDEMİN\nİNSANLARI", "⌂"],
-      ];
-
-      const grid = document.querySelector("#grid");
-      const count = document.querySelector("#count");
-      const empty = document.querySelector("#empty");
-
-      films.forEach((film, index) => {
-        const card = document.createElement("article");
-        card.className = "card";
-        card.dataset.search = film.join(" ").toLocaleLowerCase("tr");
-
-        const link = document.createElement("a");
-        link.className = `poster p${index % 8}`;
-        link.href =
-          "https://www.youtube.com/results?search_query=" +
-          encodeURIComponent(`${film[0]} ${film[1]} Türk filmi`);
-        link.target = "_blank";
-        link.rel = "noreferrer";
-        link.setAttribute("aria-label", `${film[0]} filmini YouTube’da ara`);
-
-        for (const [className, text] of [
-          ["label", `TÜRK SİNEMASI · ${film[1]}`],
-          ["art", film[4]],
-          ["title", film[3]],
-          ["play", "▶"],
-        ]) {
-          const span = document.createElement("span");
-          span.className = className;
-          span.textContent = text;
-          link.append(span);
-        }
-
-        const info = document.createElement("div");
-        info.className = "info";
-
-        const details = document.createElement("div");
-        const title = document.createElement("h3");
-        title.textContent = film[0];
-
-        const description = document.createElement("p");
-        description.textContent = `${film[2]} · ${film[1]}`;
-        details.append(title, description);
-
-        const number = document.createElement("span");
-        number.className = "num";
-        number.textContent = String(index + 1).padStart(2, "0");
-        info.append(details, number);
-
-        card.append(link, info);
-        grid.append(card);
-      });
-
-      const cards = [...grid.children];
-
-      function filterFilms() {
-        const query = document
-          .querySelector("#search")
-          .value.trim()
-          .toLocaleLowerCase("tr");
-        let visibleCount = 0;
-
-        cards.forEach((card) => {
-          const isVisible = card.dataset.search.includes(query);
-          card.classList.toggle("hide", !isVisible);
-
-          if (isVisible) {
-            visibleCount++;
-          }
-        });
-
-        count.textContent = `${String(visibleCount).padStart(2, "0")} FİLM`;
-        empty.classList.toggle("hide", visibleCount > 0);
-      }
-
-      document.querySelector("#search").addEventListener("input", filterFilms);
-      filterFilms();
-    </script>
-  </body>
+  </div>
+  <script>
+    const goal=2000;let consumed=Number(localStorage.getItem('yudum-water')||0);const $=s=>document.querySelector(s);const amount=$('#amount'),progress=$('#progress'),progressText=$('#progressText'),fill=$('#waterFill');
+    function render(){amount.textContent=consumed.toLocaleString('tr-TR');const ratio=Math.min(100,consumed/goal*100);progress.style.width=ratio+'%';progressText.textContent=`Günlük hedefinin %${Math.round(ratio)}'ı`;const fillHeight=139*ratio/100;fill.setAttribute('height',fillHeight);fill.setAttribute('y',155-fillHeight);$('#profileAmount').textContent=consumed.toLocaleString('tr-TR')+' ml';const glasses=$('#glasses');glasses.innerHTML='';for(let i=0;i<8;i++){const g=document.createElement('span');if(consumed>=((i+1)*250))g.className='filled';glasses.append(g)}$('#glassText').textContent=consumed?`${Math.floor(consumed/250)} bardak · her yudum sayılır`:'Hadi ilk bardağını iç!'}
+    document.querySelectorAll('[data-add]').forEach(btn=>btn.addEventListener('click',()=>{consumed=Math.min(goal,consumed+Number(btn.dataset.add));localStorage.setItem('yudum-water',consumed);render()}));
+    const screens=[...document.querySelectorAll('.screen')],nav=[...document.querySelectorAll('.nav button')];function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));nav.forEach(b=>b.classList.toggle('active',b.dataset.screen===id));window.scrollTo({top:0,behavior:'smooth'})}nav.forEach(b=>b.addEventListener('click',()=>go(b.dataset.screen)));document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+    document.querySelectorAll('.toggle').forEach(t=>t.addEventListener('click',()=>{t.classList.toggle('on');t.setAttribute('aria-pressed',t.classList.contains('on'))}));
+    const nameButton=$('#editName'),editForm=$('#editForm'),nameInput=$('#nameInput');
+    function setName(name){const clean=name.trim();if(!clean)return;localStorage.setItem('yudum-name',clean);$('#profileName').textContent=clean;$('#headerName').textContent=clean.split(/\s+/)[0]}
+    const savedName=localStorage.getItem('yudum-name');if(savedName)setName(savedName);
+    nameButton.addEventListener('click',()=>{nameInput.value=$('#profileName').textContent;editForm.hidden=false;nameButton.setAttribute('aria-expanded','true');nameButton.hidden=true;nameInput.focus()});
+    $('#cancelEdit').addEventListener('click',()=>{editForm.hidden=true;nameButton.hidden=false;nameButton.setAttribute('aria-expanded','false')});
+    editForm.addEventListener('submit',event=>{event.preventDefault();const clean=nameInput.value.trim();if(!clean){nameInput.focus();return}setName(clean);editForm.hidden=true;nameButton.hidden=false;nameButton.setAttribute('aria-expanded','false')});
+    const now=new Date();$('#today').textContent='BUGÜN · '+new Intl.DateTimeFormat('tr-TR',{day:'numeric',month:'long'}).format(now).toLocaleUpperCase('tr-TR');render();
+  </script>
+</body>
 </html>
+
